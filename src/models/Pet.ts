@@ -3,6 +3,11 @@ import Builder from "../utils/Builder";
 import { Color } from "./Color";
 import { Sex } from "./Sex";
 
+export interface Image {
+  url: string;
+  thumb: string;
+}
+
 export interface Pet {
   readonly id: number;
   readonly name: string;
@@ -12,6 +17,7 @@ export interface Pet {
   readonly color: Color;
   readonly sex: Sex;
   readonly special: boolean;
+  readonly image: Image;
 }
 
 const PetBuilder = new Builder<Pet>();

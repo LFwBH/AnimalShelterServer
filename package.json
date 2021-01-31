@@ -3,16 +3,28 @@
   "private": true,
   "scripts": {
     "build": "rimraf build && tsc",
-    "start": "yarn build && json-server --watch build/index.js --port 3000"
+    "start": "concurrently -n tunnel,server \"yarn tunnel\" \"yarn bootstrap\"",
+    "bootstrap": "yarn build && yarn server",
+    "watch": "concurrently -n tsc,server \"tsc -w\" \"nodemon --ignore build/db.json --exec \"\"yarn server\"\"\"",
+    "server": "node build/boot.js && node build/index.js",
+    "tunnel": "lt --port 3000"
   },
   "devDependencies": {
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
+    "@types/chalk": "^2.2.0",
     "@types/faker": "^5.1.6",
+    "@types/json-server": "^0.14.3",
+    "@types/parse-link-header": "^1.0.0",
+    "chalk": "^4.1.0",
+    "concurrently": "^5.3.0",
     "faker": "^5.2.0",
     "json-server": "^0.16.3",
+    "localtunnel": "^2.0.1",
+    "nodemon": "^2.0.7",
+    "parse-link-header": "^1.0.1",
     "typescript": "^4.1.3"
   }
 }
