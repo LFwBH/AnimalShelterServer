@@ -14,11 +14,15 @@ type EnhancedRouter = typeof router & { render: (req: any, res: any) => void };
   const links = parse(res._headers.link);
   res.jsonp({
     body: res.locals.data,
-    page: {
-      first: parseInt(links.first._page),
-      next: parseInt(links.next._page),
-      last: parseInt(links.last._page),
-    },
+    ...(links
+      ? {
+          page: {
+            first: parseInt(links.first._page),
+            next: parseInt(links.next._page),
+            last: parseInt(links.last._page),
+          },
+        }
+      : {}),
   });
 };
 

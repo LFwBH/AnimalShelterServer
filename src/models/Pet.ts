@@ -4,8 +4,16 @@ import { Color } from "./Color";
 import { Sex } from "./Sex";
 
 export interface Image {
-  url: string;
-  thumb: string;
+  original: {
+    url: string;
+    width: number;
+    height: number;
+  };
+  thumb: {
+    url: string;
+    height: number;
+    width: number;
+  };
 }
 
 export interface Pet {

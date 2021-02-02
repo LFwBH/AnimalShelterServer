@@ -17,8 +17,16 @@ const MIN_PETS = 50;
 const MAX_PETS = 100;
 
 const PLACEHOLDER: Image = {
-  url: "https://placeimg.com/640/480/animals",
-  thumb: "https://placeimg.com/160/120/animals",
+  original: {
+    url: "https://placeimg.com/640/480/animals",
+    width: 640,
+    height: 480,
+  },
+  thumb: {
+    url: "https://placeimg.com/160/120/animals",
+    width: 160,
+    height: 120,
+  },
 };
 
 const data: Response = {
