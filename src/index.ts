@@ -12,14 +12,16 @@ type EnhancedRouter = typeof router & { render: (req: any, res: any) => void };
 
 (router as EnhancedRouter).render = (_, res) => {
   const links = parse(res._headers.link);
+  console.log({links})
   res.jsonp({
     body: res.locals.data,
     ...(links
       ? {
           page: {
-            first: parseInt(links.first._page),
-            next: parseInt(links.next._page),
-            last: parseInt(links.last._page),
+            first: links.first?._page ? parseInt(links.first._page) : null,
+            prev: links.prev?._page ? parseInt(links.prev._page) : null,
+            next: links.next?._page ? parseInt(links.next._page) : null,
+            last: links.last?._page ? parseInt(links.last._page) : null,
           },
         }
       : {}),
